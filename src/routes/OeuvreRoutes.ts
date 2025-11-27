@@ -7,14 +7,6 @@ import { IOeuvre } from '@src/models/Oeuvre';
  * Extraire toutes les oeuvres
  */
 async function getAll(req: IReq, res: IRes) {
-  const tagsParam = req.query.tags as string | undefined;
-
-  let tags: string[] | undefined;
-
-  if (tagsParam) {
-    tags = tagsParam.split(',').map((tag) => tag.trim());
-  }
-
   const oeuvres = await OeuvreService.getAll();
   return res.status(HttpStatusCodes.OK).json({ oeuvres });
 }

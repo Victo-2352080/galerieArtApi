@@ -1,0 +1,153 @@
+[
+    {
+        "titre": "Rêve d’automne",
+        "artiste": {
+            "nom": "Lemoine",
+            "prenom": "Clara"
+        },
+        "prix": 120000,
+        "dateCreation": "2020-09-12",
+        "tags": [
+            "Oil",
+            "Landscape"
+        ],
+        "enVedette": true,
+        "imageUrl": "https://picsum.photos/id/1015/600/900"
+    },
+    {
+        "titre": "Le Cri",
+        "artiste": {
+            "nom": "Munch",
+            "prenom": "Edvard"
+        },
+        "prix": 120000000,
+        "dateCreation": "1893-01-01",
+        "tags": [
+            "Expressionism",
+            "Oil",
+            "Tempera"
+        ],
+        "enVedette": true,
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/The_Scream.jpg/1024px-The_Scream.jpg"
+    },
+    {
+        "titre": "Éclats de lumière",
+        "artiste": {
+            "nom": "Dupont",
+            "prenom": "Marc"
+        },
+        "prix": 95000,
+        "dateCreation": "2019-05-03",
+        "tags": [
+            "Acrylic",
+            "Abstract"
+        ],
+        "enVedette": false,
+        "imageUrl": "https://picsum.photos/id/1025/600/800"
+    },
+    {
+        "titre": "La Persistance de la mémoire",
+        "artiste": {
+            "nom": "Dalí",
+            "prenom": "Salvador"
+        },
+        "prix": 25000000,
+        "dateCreation": "1931-01-01",
+        "tags": [
+            "Oil",
+            "Surrealism"
+        ],
+        "enVedette": true,
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg"
+    },
+    {
+        "titre": "Horizons perdus",
+        "artiste": {
+            "nom": "Vermeer",
+            "prenom": "Johannes"
+        },
+        "prix": 30000000,
+        "dateCreation": "1665-01-01",
+        "tags": [
+            "Oil",
+            "Baroque"
+        ],
+        "enVedette": false,
+        "imageUrl": "https://picsum.photos/id/1021/600/850"
+    },
+    {
+        "titre": "Le Cri",
+        "artiste": {
+            "nom": "Munch",
+            "prenom": "Edvard"
+        },
+        "prix": 120000000,
+        "dateCreation": "1893-01-01",
+        "tags": [
+            "Expressionism",
+            "Oil"
+        ],
+        "enVedette": true,
+        "imageUrl": "https://picsum.photos/id/1035/600/900"
+    },
+    {
+        "titre": "Montagne rouge",
+        "artiste": {
+            "nom": "Klimt",
+            "prenom": "Gustav"
+        },
+        "prix": 500000,
+        "dateCreation": "1908-01-01",
+        "tags": [
+            "Oil",
+            "Symbolism"
+        ],
+        "enVedette": false,
+        "imageUrl": "https://picsum.photos/id/1045/600/800"
+    },
+    {
+        "titre": "Abstrait en mouvement",
+        "artiste": {
+            "nom": "Picasso",
+            "prenom": "Pablo"
+        },
+        "prix": 200000000,
+        "dateCreation": "1937-01-01",
+        "tags": [
+            "Cubism",
+            "Oil"
+        ],
+        "enVedette": true,
+        "imageUrl": "https://picsum.photos/id/1055/600/900"
+    },
+    {
+        "titre": "Nuit tranquille",
+        "artiste": {
+            "nom": "Van Gogh",
+            "prenom": "Vincent"
+        },
+        "prix": 50000000,
+        "dateCreation": "1889-06-01",
+        "tags": [
+            "Oil",
+            "Post-Impressionism"
+        ],
+        "enVedette": true,
+        "imageUrl": "https://picsum.photos/id/1065/600/850"
+    },
+    {
+        "titre": "Danse colorée",
+        "artiste": {
+            "nom": "Lemoine",
+            "prenom": "Clara"
+        },
+        "prix": 75000,
+        "dateCreation": "2021-03-22",
+        "tags": [
+            "Acrylic",
+            "Modern"
+        ],
+        "enVedette": false,
+        "imageUrl": "https://picsum.photos/id/1075/600/800"
+    }
+]

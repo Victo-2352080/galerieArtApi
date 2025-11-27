@@ -3,6 +3,7 @@ import path from 'path';
 import helmet from 'helmet';
 import express, { Request, Response, NextFunction } from 'express';
 import logger from 'jet-logger';
+import cors from 'cors';
 
 import BaseRouter from '@src/routes';
 
@@ -19,6 +20,7 @@ import { NodeEnvs } from '@src/common/constants';
 const app = express();
 
 // **** Middleware **** //
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +29,6 @@ if (ENV.NodeEnv === NodeEnvs.Dev) {
   app.use(morgan('dev'));
 }
 
-// Security
 if (ENV.NodeEnv === NodeEnvs.Production) {
   if (!process.env.DISABLE_HELMET) {
     app.use(helmet());
@@ -47,9 +48,5 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
   }
   return next(err);
 });
-
-/******************************************************************************
-                                Export default
-******************************************************************************/
 
 export default app;

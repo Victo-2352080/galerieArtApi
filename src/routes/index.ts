@@ -1,15 +1,8 @@
 import { Router } from 'express';
 import Paths from '@src/common/constants/Paths';
 import OeuvreRoutes from './OeuvreRoutes';
-import JetonRoute from './JetonRoute';
 
 const apiRouter = Router();
-
-// ** Token Router (Login) ** //
-const tokenRouter = Router();
-
-tokenRouter.post(Paths.GenerateToken.Get, JetonRoute.generateToken);
-apiRouter.use(Paths.GenerateToken.Base, tokenRouter);
 
 // ** Oeuvre Router ** //
 const oeuvreRouter = Router();

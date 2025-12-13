@@ -6,7 +6,7 @@
     "dev": "node --env-file=.env -r ts-node/register ./src",
     "lint": "eslint . --fix",
     "start": "NODE_ENV=production node -r ./config.js ./dist",
-    "test": "cross-env NODE_ENV=test vitest"
+    "test": "cross-env NODE_ENV=test vitest --passWithNoTests"
   },
   "engines": {
     "node": ">=16.0.0"

@@ -23,12 +23,12 @@ const ArtisteSchema = new Schema<IArtiste>(
   {
     nom: {
       type: String,
-      required: [true, "Le nom de l'artiste est obligatoire"],
+      required: [true, 'Le nom artiste est obligatoire'],
       trim: true,
     },
     prenom: {
       type: String,
-      required: [true, "Le prénom de l'artiste est obligatoire"],
+      required: [true, 'Le prénom de artiste est obligatoire'],
       trim: true,
     },
     surnom: {
@@ -43,14 +43,14 @@ const OeuvreSchema = new Schema<IOeuvre>(
   {
     titre: {
       type: String,
-      required: [true, "Le titre de l'oeuvre est obligatoire"],
+      required: [true, 'Le titre de oeuvre est obligatoire'],
       trim: true,
       minlength: [3, 'Le titre doit contenir au moins 3 caractères'],
     },
 
     artiste: {
       type: ArtisteSchema,
-      required: [true, "Les informations de l'artiste sont obligatoires"],
+      required: [true, 'Les informations de artiste sont obligatoires'],
     },
 
     prix: {
@@ -72,7 +72,7 @@ const OeuvreSchema = new Schema<IOeuvre>(
 
     imageUrl: {
       type: String,
-      required: [true, "L'image est obligatoire"],
+      required: [true, 'image est obligatoire'],
       trim: true,
     },
 

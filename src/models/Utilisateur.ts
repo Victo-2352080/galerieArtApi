@@ -1,19 +1,27 @@
+// Erreur de build fixé par Claude.AI - 2025-12-10
 import mongoose, { Schema, model } from 'mongoose';
+
+/******************************************************************************
+                                  Types
+******************************************************************************/
 
 export interface IUtilisateur {
   id: string;
-  email: string;
+  courriel: string;
   motDePasse: string;
 }
 
-const UtilisteurSchema = new Schema<IUtilisateur>({
-  email: { type: String, required: [true, 'Email est requis'] },
-  motDePasse: { type: String, required: [true, 'Le mot de passe est requis'] },
+const UtilisateurSchema = new Schema<IUtilisateur>({
+  courriel: { type: String, required: [true, 'Le courriel est requis'] },
+  motDePasse: {
+    type: String,
+    required: [true, 'Le mot de passe est requis'],
+  },
 });
 
 mongoose.pluralize(null);
 
 export const Utilisateur = model<IUtilisateur>(
   'utilisateurs',
-  UtilisteurSchema,
+  UtilisateurSchema,
 );

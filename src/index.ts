@@ -27,5 +27,5 @@ connect(ENV.Mongodb)
       logger.err(String(err), true);
     }
 
-    process.exit(1);
+    throw new Error('Database connection failed. Server cannot start.');
   });

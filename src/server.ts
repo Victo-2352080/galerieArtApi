@@ -42,6 +42,7 @@ if (ENV.NodeEnv === NodeEnvs.Production) {
 
 app.use(authenticateToken);
 
+// Add APIs, must be after middleware
 app.use(Paths.Base, BaseRouter);
 
 // Add error handler

@@ -2,12 +2,15 @@ import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
 import { IReq, IRes } from './common/types';
 import UtilisateurService from '@src/services/UtilisateurService';
 
-async function getByEmail(req: IReq, res: IRes) {
-  const { email } = req.params;
-  const utilisateur = await UtilisateurService.getByEmail(email as string);
-  return res.status(HttpStatusCodes.OK).json({ utilisateur });
+/******************************************************************************
+                                Fonctions
+******************************************************************************/
+
+async function getAll(_: IReq, res: IRes) {
+  const utilisateurs = await UtilisateurService.getAll();
+  return res.status(HttpStatusCodes.OK).json({ utilisateurs });
 }
 
 export default {
-  getByEmail,
-} as const;
+  getAll,
+};

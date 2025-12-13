@@ -1,10 +1,20 @@
 import { IUtilisateur, Utilisateur } from '@src/models/Utilisateur';
 
-async function getByEmail(email: string): Promise<IUtilisateur | null> {
-  const utilisateur = await Utilisateur.findOne({ email: email });
-  return utilisateur;
+/******************************************************************************
+                                Fonctions
+******************************************************************************/
+/****************************************
+                 GET
+*****************************************/
+/**
+ * Extraire tous les utilisateurs.
+ *
+ * @returns {IUtilisateur[]} Un tableau de tous les utilisateurs
+ */
+async function getAll(): Promise<IUtilisateur[]> {
+  return await Utilisateur.find().sort('courriel');
 }
 
 export default {
-  getByEmail,
-} as const;
+  getAll,
+};

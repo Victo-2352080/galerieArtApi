@@ -3,6 +3,7 @@ import { Router } from 'express';
 import Paths from '@src/common/constants/Paths';
 import OeuvreRoutes from './OeuvreRoutes';
 import UtilisateurRoutes from './UtilisateurRoutes';
+import JetonRoute from './JetonRoute';
 
 /******************************************************************************
                         Setup
@@ -19,13 +20,16 @@ oeuvreRouter.post(Paths.Oeuvres.Add, OeuvreRoutes.add);
 oeuvreRouter.put(Paths.Oeuvres.Update, OeuvreRoutes.update);
 oeuvreRouter.delete(Paths.Oeuvres.Delete, OeuvreRoutes.delete);
 
-utilisateurRouter.post(
-  Paths.Utilisateur.GetByEmail,
-  UtilisateurRoutes.getByEmail,
-);
+utilisateurRouter.post(Paths.Utilisateurs.GetAll, UtilisateurRoutes.getAll);
 
 apiRouter.use(Paths.Oeuvres.Base, oeuvreRouter);
-apiRouter.use(Paths.Utilisateur.Base, utilisateurRouter);
+apiRouter.use(Paths.Utilisateurs.Base, utilisateurRouter);
+
+const tokenRouter = Router();
+
+tokenRouter.post(Paths.GenerateToken.Get, JetonRoute.generateToken);
+
+apiRouter.use(Paths.GenerateToken.Base, tokenRouter);
 
 /******************************************************************************
                         Export default

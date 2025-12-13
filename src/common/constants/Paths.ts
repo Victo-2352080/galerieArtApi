@@ -8,8 +8,15 @@ export default {
     Update: '/:id',
     Delete: '/:id',
   },
-  Utilisateur: {
-    Base: '/utilisateur',
-    GetByEmail: '/connexion/:email',
+  GenerateToken: {
+    Base: '/generatetoken',
+    Get: '/',
+  },
+  Utilisateurs: {
+    Base: '/utilisateurs',
+    GetAll: '/',
+    Add: '/add',
+    Update: '/update',
+    Delete: '/delete/:id',
   },
 } as const;

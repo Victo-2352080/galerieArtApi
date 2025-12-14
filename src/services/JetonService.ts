@@ -16,12 +16,21 @@ export const UTILISATEUR_NOT_FOUND_ERR = 'Utilisateur non trouvé';
  * @returns {Promise} - Le jeton signé
  */
 async function generateToken(utilisateur: IUtilisateur): Promise<string> {
-  const utilisateurBD = (await UtilisateurService.getAll()).find(
-    (u) => u.courriel === utilisateur.courriel,
+  const utilisateurs = await UtilisateurService.getAll();
+  console.log('Utilisateurs en DB:', utilisateurs);
+  console.log('Utilisateur login:', utilisateur);
+
+  const utilisateurBD = utilisateurs.find(
+    (u) =>
+      u.courriel.toLowerCase().trim() ===
+      utilisateur.courriel.toLowerCase().trim(),
   );
+
   if (utilisateurBD && utilisateurBD.motDePasse === utilisateur.motDePasse) {
-    return jwt.sign(utilisateur.courriel, ENV.Jwtsecret);
+    console.log('Utilisateur trouvé ! Génération du token...');
+    return jwt.sign({ email: utilisateur.courriel }, ENV.Jwtsecret);
   } else {
+    console.log('Utilisateur non trouvé ou mot de passe incorrect');
     return '';
   }
 }

@@ -11,7 +11,7 @@ import ENV from '@src/common/constants/ENV';
 import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
 import { RouteError } from '@src/common/util/route-errors';
 import { NodeEnvs } from '@src/common/constants';
-import authenticateToken from './services/authenticateToken';
+import authenticateToken from './services/AuthenticateToken';
 import cors from 'cors';
 
 /******************************************************************************

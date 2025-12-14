@@ -11,7 +11,7 @@ import ENV from '@src/common/constants/ENV';
  * @param {NextFunction} next - La fonction a appeler pour continuer
  * le processus.
  */
-function authenticateToken(req: Request, res: Response, next: NextFunction) {
+function AuthenticateToken(req: Request, res: Response, next: NextFunction) {
   // Ne pas vérifier le token si l'url est celui de generatetoken
   const urlParts = req.url.split('/');
   const lastPartOfUrl = urlParts[urlParts.length - 1];
@@ -37,4 +37,4 @@ function authenticateToken(req: Request, res: Response, next: NextFunction) {
   });
 }
 
-export default authenticateToken;
+export default AuthenticateToken;

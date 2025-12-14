@@ -16,17 +16,30 @@ import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
  * @param {IRes} res - La réponse du serveur
  */
 async function generateToken(req: IReq, res: IRes) {
-  if (req.body === null) {
-    res
+  if (!req.body) {
+    return res
       .status(HttpStatusCodes.BAD_REQUEST)
-      .send({ error: 'Utilisateur Login Requis (courriel, motDePasse)' })
-      .end();
-    return;
+      .json({ error: 'Utilisateur requis (courriel, motDePasse)' });
   }
 
-  const utilisateurLogin = req.body.utilisateurLogin as IUtilisateur;
+  const utilisateurLogin = (req.body.utilisateurLogin ||
+    req.body) as IUtilisateur;
+
+  if (!utilisateurLogin.courriel || !utilisateurLogin.motDePasse) {
+    return res
+      .status(HttpStatusCodes.BAD_REQUEST)
+      .json({ error: 'Courriel et mot de passe requis' });
+  }
+
   const token = await JetonService.generateToken(utilisateurLogin);
-  return res.send({ token: token });
+
+  if (!token || token === '') {
+    return res
+      .status(HttpStatusCodes.UNAUTHORIZED)
+      .json({ error: 'Identifiants invalides' });
+  }
+
+  return res.json({ token });
 }
 
 /******************************************************************************

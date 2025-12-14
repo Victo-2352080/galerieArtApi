@@ -1,4 +1,3 @@
-// Erreur de build fixé par Claude.AI - 2025-12-10
 import mongoose, { Schema, model } from 'mongoose';
 
 /******************************************************************************

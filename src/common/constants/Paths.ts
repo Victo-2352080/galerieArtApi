@@ -11,7 +11,7 @@ export default {
     Update: '/update',
     Delete: '/delete/:id',
   },
-  Vinyle: {
+  Oeuvres: {
     Base: '/vinyles',
     GetAll: '/',
     GetByID: '/:idVinyle',

@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction, Router } from 'express';
 
 import Paths from '@src/common/constants/Paths';
-import VinyleRoutes from './VinyleRoutes';
+import OeuvreRoutes from './OeuvreRoutes';
 import UtilisateurRoutes from './UtilisateurRoutes';
 import JetonRoutes from './JetonRoutes';
 
 import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
-import { IVinyle, Vinyle } from '@src/models/Vinyle';
+import { IOeuvre, Oeuvre } from '@src/models/Oeuvre';
 
 /******************************************************************************
                                 Setup
@@ -14,36 +14,36 @@ import { IVinyle, Vinyle } from '@src/models/Vinyle';
 const apiRouter = Router();
 
 /******************************************************************************
-                                Vinyles
+                                Oeuvres
 ******************************************************************************/
-// ** Add VinyleRouter ** //
-const VinyleRouter = Router();
-interface VinyleRequest {
-  vinyle: IVinyle;
+// ** Add OeuvreRouter ** //
+const OeuvreRouter = Router();
+interface OeuvreRequest {
+  Oeuvre: IOeuvre;
 }
 
-// ** Validation d'un vinyle ** //
-function validateVinyle(req: Request, res: Response, next: NextFunction) {
-  const body = req.body as VinyleRequest;
+// ** Validation d'un Oeuvre ** //
+function validateOeuvre(req: Request, res: Response, next: NextFunction) {
+  const body = req.body as OeuvreRequest;
 
   if (req.body === null) {
     res
       .status(HttpStatusCodes.BAD_REQUEST)
-      .send({ error: 'Vinyle requis' })
+      .send({ error: 'Oeuvre requis' })
       .end();
     return;
   }
 
-  if (body.vinyle === null || body.vinyle === undefined) {
+  if (body.Oeuvre === null || body.Oeuvre === undefined) {
     res
       .status(HttpStatusCodes.BAD_REQUEST)
-      .send({ error: 'Vinyle requis' })
+      .send({ error: 'Oeuvre requis' })
       .end();
     return;
   }
 
-  const nouveauVinyle = new Vinyle(body.vinyle);
-  const error = nouveauVinyle.validateSync();
+  const nouveauOeuvre = new Oeuvre(body.Oeuvre);
+  const error = nouveauOeuvre.validateSync();
 
   if (error !== null && error !== undefined) {
     res.status(HttpStatusCodes.BAD_REQUEST).send(error).end();
@@ -52,16 +52,14 @@ function validateVinyle(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-VinyleRouter.get(Paths.Vinyle.GetAll, VinyleRoutes.getAll);
-VinyleRouter.get(Paths.Vinyle.GetByArtiste, VinyleRoutes.getByArtiste);
-VinyleRouter.get(Paths.Vinyle.GetByID, VinyleRoutes.getByID);
-VinyleRouter.get(Paths.Vinyle.GetByTitre, VinyleRoutes.getByTitre);
-VinyleRouter.post(Paths.Vinyle.Add, validateVinyle, VinyleRoutes.ajouterVinyle);
-VinyleRouter.put(Paths.Vinyle.Update, VinyleRoutes.updateVinyle);
-VinyleRouter.delete(Paths.Vinyle.Delete, VinyleRoutes.supprimerVinyle);
+OeuvreRouter.get(Paths.Oeuvres.GetAll, OeuvreRoutes.getAll);
+OeuvreRouter.get(Paths.Oeuvres.GetByID, OeuvreRoutes.getOne);
+OeuvreRouter.post(Paths.Oeuvres.Add, validateOeuvre, OeuvreRoutes.add);
+OeuvreRouter.put(Paths.Oeuvres.Update, OeuvreRoutes.update);
+OeuvreRouter.delete(Paths.Oeuvres.Delete, OeuvreRoutes.delete);
 
-// Add VinyleRouter
-apiRouter.use(Paths.Vinyle.Base, VinyleRouter);
+// Add OeuvreRouter
+apiRouter.use(Paths.Oeuvres.Base, OeuvreRouter);
 
 /******************************************************************************
                                 Token

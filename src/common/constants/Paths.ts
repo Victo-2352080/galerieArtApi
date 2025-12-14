@@ -1,13 +1,5 @@
 export default {
   Base: '/api',
-  Oeuvres: {
-    Base: '/oeuvres',
-    Get: '/',
-    GetById: '/:id',
-    Add: '/',
-    Update: '/:id',
-    Delete: '/:id',
-  },
   GenerateToken: {
     Base: '/generatetoken',
     Get: '/',
@@ -18,5 +10,13 @@ export default {
     Add: '/add',
     Update: '/update',
     Delete: '/delete/:id',
+  },
+  Oeuvres: {
+    Base: '/oeuvres',
+    Get: '/',
+    GetById: '/:id',
+    Add: '/',
+    Update: '/:id',
+    Delete: '/:id',
   },
 } as const;

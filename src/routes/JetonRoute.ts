@@ -1,4 +1,3 @@
-// Erreur de build fixé par Claude.AI - 2025-12-10
 import JetonService from '@src/services/JetonService';
 import { IUtilisateur } from '@src/models/Utilisateur';
 import { IReq, IRes } from './common/types';

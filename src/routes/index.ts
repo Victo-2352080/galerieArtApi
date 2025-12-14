@@ -54,7 +54,7 @@ function validateOeuvre(req: Request, res: Response, next: NextFunction) {
 
 OeuvreRouter.get(Paths.Oeuvres.Get, OeuvreRoutes.getAll);
 OeuvreRouter.get(Paths.Oeuvres.GetById, OeuvreRoutes.getOne);
-OeuvreRouter.post(Paths.Oeuvres.Add, OeuvreRoutes.add);
+OeuvreRouter.post(Paths.Oeuvres.Add, validateOeuvre, OeuvreRoutes.add);
 OeuvreRouter.put(Paths.Oeuvres.Update, OeuvreRoutes.update);
 OeuvreRouter.delete(Paths.Oeuvres.Delete, OeuvreRoutes.delete);
 

@@ -13,10 +13,10 @@ export default {
   },
   Oeuvres: {
     Base: '/oeuvres',
-    GetAll: '/',
-    GetByID: '/:idOeuvre',
+    Get: '/',
+    GetById: '/:id',
     Add: '/',
-    Update: '/',
+    Update: '/:id',
     Delete: '/:id',
   },
 } as const;

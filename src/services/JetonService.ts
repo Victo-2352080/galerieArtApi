@@ -19,11 +19,8 @@ async function generateToken(utilisateur: IUtilisateur): Promise<string> {
   const utilisateurBD = (await UtilisateurService.getAll()).find(
     (u) => u.courriel === utilisateur.courriel,
   );
-  if (utilisateurBD && utilisateurBD.motDePasse === utilisateur.motDePasse) {
-    return jwt.sign(utilisateur.courriel, ENV.Jwtsecret);
-  } else {
-    return '';
-  }
+  // non securitaire
+  return jwt.sign(utilisateur.courriel, ENV.Jwtsecret);
 }
 
 // **** Export default **** //

@@ -17,9 +17,6 @@ export const UTILISATEUR_NOT_FOUND_ERR = 'Utilisateur non trouvé';
  */
 async function generateToken(utilisateur: IUtilisateur): Promise<string> {
   const utilisateurs = await UtilisateurService.getAll();
-  console.log('Utilisateurs en DB:', utilisateurs);
-  console.log('Utilisateur login:', utilisateur);
-
   const utilisateurBD = utilisateurs.find(
     (u) =>
       u.courriel.toLowerCase().trim() ===

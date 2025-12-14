@@ -1,38 +1,96 @@
-import { Router } from 'express';
+import { Request, Response, NextFunction, Router } from 'express';
 
 import Paths from '@src/common/constants/Paths';
 import OeuvreRoutes from './OeuvreRoutes';
 import UtilisateurRoutes from './UtilisateurRoutes';
-import JetonRoute from './JetonRoute';
+import JetonRoutes from './JetonRoute';
+
+import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
+import { IOeuvre, Oeuvre } from '@src/models/Oeuvre';
 
 /******************************************************************************
-                        Setup
+                                Setup
 ******************************************************************************/
-
 const apiRouter = Router();
 
-const oeuvreRouter = Router();
-const utilisateurRouter = Router();
+/******************************************************************************
+                                Oeuvres
+******************************************************************************/
+// ** Add OeuvreRouter ** //
+const OeuvreRouter = Router();
+interface OeuvreRequest {
+  Oeuvre: IOeuvre;
+}
 
-oeuvreRouter.get(Paths.Oeuvres.Get, OeuvreRoutes.getAll);
-oeuvreRouter.get(Paths.Oeuvres.GetById, OeuvreRoutes.getOne);
-oeuvreRouter.post(Paths.Oeuvres.Add, OeuvreRoutes.add);
-oeuvreRouter.put(Paths.Oeuvres.Update, OeuvreRoutes.update);
-oeuvreRouter.delete(Paths.Oeuvres.Delete, OeuvreRoutes.delete);
+// ** Validation d'un Oeuvre ** //
+function validateOeuvre(req: Request, res: Response, next: NextFunction) {
+  const body = req.body as OeuvreRequest;
 
-utilisateurRouter.post(Paths.Utilisateurs.GetAll, UtilisateurRoutes.getAll);
+  if (req.body === null) {
+    res
+      .status(HttpStatusCodes.BAD_REQUEST)
+      .send({ error: 'Oeuvre requis' })
+      .end();
+    return;
+  }
 
-apiRouter.use(Paths.Oeuvres.Base, oeuvreRouter);
-apiRouter.use(Paths.Utilisateurs.Base, utilisateurRouter);
+  if (body.Oeuvre === null || body.Oeuvre === undefined) {
+    res
+      .status(HttpStatusCodes.BAD_REQUEST)
+      .send({ error: 'Oeuvre requis' })
+      .end();
+    return;
+  }
 
+  const nouveauOeuvre = new Oeuvre(body.Oeuvre);
+  const error = nouveauOeuvre.validateSync();
+
+  if (error !== null && error !== undefined) {
+    res.status(HttpStatusCodes.BAD_REQUEST).send(error).end();
+  } else {
+    next();
+  }
+}
+
+OeuvreRouter.get(Paths.Oeuvres.Get, OeuvreRoutes.getAll);
+OeuvreRouter.get(Paths.Oeuvres.GetById, OeuvreRoutes.getOne);
+OeuvreRouter.post(Paths.Oeuvres.Add, OeuvreRoutes.add);
+OeuvreRouter.put(Paths.Oeuvres.Update, OeuvreRoutes.update);
+OeuvreRouter.delete(Paths.Oeuvres.Delete, OeuvreRoutes.delete);
+
+// Add OeuvreRouter
+apiRouter.use(Paths.Oeuvres.Base, OeuvreRouter);
+
+/******************************************************************************
+                                Token
+******************************************************************************/
 const tokenRouter = Router();
 
-tokenRouter.post(Paths.GenerateToken.Get, JetonRoute.generateToken);
+// Generate Token
+tokenRouter.post(Paths.GenerateToken.Get, JetonRoutes.generateToken);
 
 apiRouter.use(Paths.GenerateToken.Base, tokenRouter);
 
 /******************************************************************************
-                        Export default
+                              Utilisateur
+******************************************************************************/
+const utilisateurRouter = Router();
+
+utilisateurRouter.get(Paths.Utilisateurs.GetAll, UtilisateurRoutes.getAll);
+// utilisateurRouter.post(Paths.Utilisateurs.Add, UtilisateurRoutes.add);
+// utilisateurRouter.put(
+//   Paths.Utilisateurs.Update,
+//   UtilisateurRoutes.update,
+// );
+// utilisateurRouter.delete(
+//   Paths.Utilisateurs.Delete,
+//   UtilisateurRoutes.delete,
+// );
+
+apiRouter.use(Paths.Utilisateurs.Base, utilisateurRouter);
+
+/******************************************************************************
+                                Export default
 ******************************************************************************/
 
 export default apiRouter;

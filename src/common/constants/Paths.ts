@@ -11,12 +11,14 @@ export default {
     Update: '/update',
     Delete: '/delete/:id',
   },
-  Oeuvres: {
-    Base: '/oeuvres',
-    Get: '/',
-    GetById: '/:id',
+  Vinyle: {
+    Base: '/vinyles',
+    GetAll: '/',
+    GetByID: '/:idVinyle',
+    GetByArtiste: '/artiste/:nomArtiste',
+    GetByTitre: '/titre/:titreVinyle',
     Add: '/',
-    Update: '/:id',
+    Update: '/',
     Delete: '/:id',
   },
 } as const;

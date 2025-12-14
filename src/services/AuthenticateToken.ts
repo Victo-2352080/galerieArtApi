@@ -1,4 +1,3 @@
-// Erreur de build fixé par Claude.AI - 2025-12-10
 import jwt from 'jsonwebtoken';
 import { Response, Request, NextFunction } from 'express';
 import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';

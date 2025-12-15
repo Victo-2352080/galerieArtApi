@@ -60,10 +60,19 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
 
 // **** FrontEnd Content **** //
 
-app.get('/', async (req, res) => {
+// Réparer par ChatGpt (2025-12-15)
+// Probleme lint async + trouvais pas le fichier
+
+const viewsDir = path.join(__dirname, 'views');
+app.set('views', viewsDir);
+
+const staticDir = path.join(__dirname, 'public');
+app.use(express.static(staticDir));
+
+app.get('/', (req: Request, res: Response) => {
   res.set('Content-Security-Policy', 'script-src blob:');
   res.set('Content-Security-Policy', 'worker-src blob:');
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile('index.html', { root: viewsDir });
 });
 
 /******************************************************************************

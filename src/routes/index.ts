@@ -32,7 +32,7 @@ apiRouter.use(Paths.Oeuvres.Base, OeuvreRouter);
 const tokenRouter = Router();
 
 // Generate Token
-tokenRouter.post(Paths.GenerateToken.Get, JetonRoutes.generateToken);
+tokenRouter.post(Paths.GenerateToken.Post, JetonRoutes.generateToken);
 
 apiRouter.use(Paths.GenerateToken.Base, tokenRouter);
 

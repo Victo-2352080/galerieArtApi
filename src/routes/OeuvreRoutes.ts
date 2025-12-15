@@ -22,6 +22,22 @@ async function getOne(req: IReq, res: IRes) {
 }
 
 /**
+ * Extraire les oeuvres par tag
+ */
+async function getByTag(req: IReq, res: IRes) {
+  const { tag } = req.params as { tag: string };
+
+  if (!tag) {
+    return res
+      .status(HttpStatusCodes.BAD_REQUEST)
+      .json({ error: 'Tag requis' });
+  }
+
+  const oeuvres = await OeuvreService.getByTag(tag);
+  return res.status(HttpStatusCodes.OK).json({ oeuvres });
+}
+
+/**
  * Ajouter une oeuvre
  */
 async function add(req: IReq, res: IRes) {
@@ -55,6 +71,7 @@ async function delete_(req: IReq, res: IRes) {
 export default {
   getAll,
   getOne,
+  getByTag,
   add,
   update,
   delete: delete_,

@@ -18,6 +18,7 @@ const OeuvreRouter = Router();
 
 OeuvreRouter.get(Paths.Oeuvres.Get, OeuvreRoutes.getAll);
 OeuvreRouter.get(Paths.Oeuvres.GetById, OeuvreRoutes.getOne);
+OeuvreRouter.get(Paths.Oeuvres.GetByTag, OeuvreRoutes.getByTag);
 OeuvreRouter.post(Paths.Oeuvres.Add, OeuvreRoutes.add);
 OeuvreRouter.put(Paths.Oeuvres.Update, OeuvreRoutes.update);
 OeuvreRouter.delete(Paths.Oeuvres.Delete, OeuvreRoutes.delete);
@@ -41,15 +42,6 @@ apiRouter.use(Paths.GenerateToken.Base, tokenRouter);
 const utilisateurRouter = Router();
 
 utilisateurRouter.get(Paths.Utilisateurs.GetAll, UtilisateurRoutes.getAll);
-// utilisateurRouter.post(Paths.Utilisateurs.Add, UtilisateurRoutes.add);
-// utilisateurRouter.put(
-//   Paths.Utilisateurs.Update,
-//   UtilisateurRoutes.update,
-// );
-// utilisateurRouter.delete(
-//   Paths.Utilisateurs.Delete,
-//   UtilisateurRoutes.delete,
-// );
 
 apiRouter.use(Paths.Utilisateurs.Base, utilisateurRouter);
 

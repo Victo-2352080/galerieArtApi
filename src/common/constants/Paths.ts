@@ -15,6 +15,7 @@ export default {
     Base: '/oeuvres',
     Get: '/',
     GetById: '/:id',
+    GetByTag: '/tag/:tag',
     Add: '/',
     Update: '/:id',
     Delete: '/:id',

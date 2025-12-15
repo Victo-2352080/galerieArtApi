@@ -28,6 +28,14 @@ async function getAll(): Promise<IOeuvre[]> {
 }
 
 /**
+ * Get oeuvres by tag
+ */
+async function getByTag(tag: string): Promise<IOeuvre[]> {
+  // Recherche exacte dans le tableau tags
+  return await Oeuvre.find({ tags: tag }).exec();
+}
+
+/**
  * Add one oeuvre.
  */
 async function add(oeuvre: IOeuvre): Promise<void> {
@@ -70,6 +78,7 @@ export default {
   getOne,
   persists,
   getAll,
+  getByTag,
   add,
   update,
   delete: delete_,

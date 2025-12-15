@@ -25,6 +25,17 @@ async function getOne(id: string) {
 }
 
 /**
+ * Extraire les oeuvres par tag
+ */
+async function getByTag(tag: string) {
+  if (!tag) {
+    throw new Error('Tag requis');
+  }
+  const oeuvres = await OeuvreRepo.getByTag(tag);
+  return oeuvres;
+}
+
+/**
  * Ajouter une oeuvre
  */
 async function addOne(oeuvre: IOeuvre) {
@@ -62,6 +73,7 @@ async function delete_(id: string) {
 export default {
   getAll,
   getOne,
+  getByTag,
   addOne,
   updateOne,
   delete: delete_,

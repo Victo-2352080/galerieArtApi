@@ -17,9 +17,16 @@ export const UTILISATEUR_NOT_FOUND_ERR = 'Utilisateur non trouvé';
  */
 async function generateToken(utilisateur: IUtilisateur): Promise<string> {
   const utilisateurBD = (await UtilisateurService.getAll()).find(
-    (u) => u.courriel === utilisateur.courriel,
+    (u) => u.courriel == utilisateur.courriel,
   );
-  // non securitaire
+  if (!utilisateurBD) {
+    throw new Error('Utilisateur introuvable');
+  }
+
+  if (utilisateurBD.motDePasse !== utilisateur.motDePasse) {
+    throw new Error('Mot de passe invalide');
+  }
+
   return jwt.sign(utilisateur.courriel, ENV.Jwtsecret);
 }
 

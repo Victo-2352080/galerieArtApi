@@ -7,6 +7,16 @@ import { IUtilisateur, Utilisateur } from '@src/models/Utilisateur';
                  GET
 *****************************************/
 /**
+ * Extraire un utilisateur par courriel.
+ *
+ * @param {string} courriel - L'adresse courriel de l'utilisateur
+ * @returns {IUtilisateur | null} L'utilisateur ou null s'il n'existe pas
+ */
+async function getOne(courriel: string): Promise<IUtilisateur | null> {
+  return await Utilisateur.findOne({ courriel });
+}
+
+/**
  * Extraire tous les utilisateurs.
  *
  * @returns {IUtilisateur[]} Un tableau de tous les utilisateurs
@@ -16,5 +26,6 @@ async function getAll(): Promise<IUtilisateur[]> {
 }
 
 export default {
+  getOne,
   getAll,
 };

@@ -15,13 +15,11 @@ export const INVALID_CREDENTIALS_ERR = 'Identifiants invalides';
  *
  * @param {IUtilisateur} utilisateur - L'utilisateur demandant le jeton
  * @returns {Promise} - Le jeton signé
- * @throws {Error} - Si l'utilisateur n'existe pas ou si le mot de passe est incorrect
+ * @throws {Error} - Si erreur
  */
 async function generateToken(utilisateur: IUtilisateur): Promise<string> {
-  // Récupérer l'utilisateur de la base de données
-  const utilisateurBD = (await UtilisateurService.getAll()).find(
-    (u) => u.courriel === utilisateur.courriel,
-  );
+  // Récupérer l'utilisateur de la base de données par courriel
+  const utilisateurBD = await UtilisateurService.getOne(utilisateur.courriel);
 
   // Vérifier si l'utilisateur existe
   if (!utilisateurBD) {

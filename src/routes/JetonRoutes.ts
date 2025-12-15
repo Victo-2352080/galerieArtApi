@@ -16,7 +16,7 @@ import HttpStatusCodes from '@src/common/constants/HttpStatusCodes';
  * @param {IRes} res - La réponse du serveur
  */
 async function generateToken(req: IReq, res: IRes) {
-  if (req.body === null || !req.body.utilisateurLogin) {
+  if (!req.body?.utilisateurLogin) {
     return res
       .status(HttpStatusCodes.BAD_REQUEST)
       .send({ error: 'Utilisateur Login Requis (courriel, motDePasse)' })

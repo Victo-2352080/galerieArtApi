@@ -68,14 +68,11 @@ app.set('views', viewsDir);
 const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 
-// Nav to users pg by default
-app.get('/', (_: Request, res: Response) => {
-  return res.redirect('/users');
-});
-
-// Redirect to login if not logged in.
-app.get('/users', (_: Request, res: Response) => {
-  return res.sendFile('users.html', { root: viewsDir });
+// Documentation Redoc
+app.get('/', (req: Request, res: Response) => {
+  res.set('Content-Security-Policy', 'script-src blob:');
+  res.set('Content-Security-Policy', 'worker-src blob:');
+  res.sendFile('index.html', { root: path.join(__dirname, 'views') });
 });
 
 /******************************************************************************

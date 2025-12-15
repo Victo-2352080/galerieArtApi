@@ -68,7 +68,7 @@ app.set('views', viewsDir);
 const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 
-app.get('/api-docs/', async (req, res) => {
+app.get('/api-docs/', (req, res) => {
   res.set('Content-Security-Policy', 'script-src blob:');
   res.set('Content-Security-Policy', 'worker-src blob:');
   res.sendFile(path.join(__dirname, 'index.html'));

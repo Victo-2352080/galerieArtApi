@@ -60,19 +60,10 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
 
 // **** FrontEnd Content **** //
 
-// Set views directory (html)
-const viewsDir = path.join(__dirname, 'views');
-app.set('views', viewsDir);
-
-// Set static directory (js and css).
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
-
-// Redoc documentation
-app.get('/', (req: Request, res: Response) => {
+app.get('/', async (req, res) => {
   res.set('Content-Security-Policy', 'script-src blob:');
   res.set('Content-Security-Policy', 'worker-src blob:');
-  res.sendFile('index.html', { root: viewsDir });
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 /******************************************************************************

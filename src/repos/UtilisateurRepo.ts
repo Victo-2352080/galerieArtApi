@@ -13,7 +13,19 @@ import { IUtilisateur, Utilisateur } from '@src/models/Utilisateur';
  * @returns {IUtilisateur | null} L'utilisateur ou null s'il n'existe pas
  */
 async function getOne(courriel: string): Promise<IUtilisateur | null> {
-  return await Utilisateur.findOne({ courriel });
+  const user = await Utilisateur.findOne({
+    'utilisateurLogin.courriel': courriel,
+  }).lean();
+
+  if (!user) {
+    return null;
+  }
+
+  return {
+    id: user._id.toString(),
+    courriel: user.utilisateurLogin.courriel,
+    motDePasse: user.utilisateurLogin.motDePasse,
+  };
 }
 
 /**
@@ -22,7 +34,15 @@ async function getOne(courriel: string): Promise<IUtilisateur | null> {
  * @returns {IUtilisateur[]} Un tableau de tous les utilisateurs
  */
 async function getAll(): Promise<IUtilisateur[]> {
-  return await Utilisateur.find().sort('courriel');
+  const users = await Utilisateur.find()
+    .sort('utilisateurLogin.courriel')
+    .lean();
+
+  return users.map((user) => ({
+    id: user._id.toString(),
+    courriel: user.utilisateurLogin.courriel,
+    motDePasse: user.utilisateurLogin.motDePasse,
+  }));
 }
 
 export default {

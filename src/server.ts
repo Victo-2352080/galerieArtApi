@@ -68,15 +68,11 @@ app.set('views', viewsDir);
 const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 
-app.get('/api-docs/', (req, res) => {
+// Redoc documentation
+app.get('/', (req: Request, res: Response) => {
   res.set('Content-Security-Policy', 'script-src blob:');
   res.set('Content-Security-Policy', 'worker-src blob:');
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// redirige vers api-docs
-app.get('/', (req, res) => {
-  res.redirect('/api-docs');
+  res.sendFile('index.html', { root: viewsDir });
 });
 
 /******************************************************************************

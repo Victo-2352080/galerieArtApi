@@ -7,9 +7,6 @@ export default {
   Utilisateurs: {
     Base: '/utilisateurs',
     GetAll: '/',
-    Add: '/add',
-    Update: '/update',
-    Delete: '/delete/:id',
   },
   Oeuvres: {
     Base: '/oeuvres',

@@ -11,12 +11,11 @@ export interface IUtilisateur {
   motDePasse: string;
 }
 
-// Schéma interne qui correspond à la structure dans MongoDB
 interface IUtilisateurDocument {
   _id: mongoose.Types.ObjectId;
   utilisateurLogin: {
-    courriel: string,
-    motDePasse: string,
+    courriel: string;
+    motDePasse: string;
   };
 }
 

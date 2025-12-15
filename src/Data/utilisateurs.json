@@ -1,0 +1,14 @@
+[
+    {
+        "utilisateurLogin": {
+            "courriel": "nath@fifty.com",
+            "motDePasse": "12345"
+        }
+    },
+    {
+        "utilisateurLogin": {
+            "courriel": "dratox@gmail.com",
+            "motDePasse": "12345"
+        }
+    }
+]
